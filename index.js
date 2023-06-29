@@ -1,11 +1,11 @@
-// const argv = require('yargs').argv;
+const { Command } = require('commander');
 const contacts = require("./contacts");
-// TODO: рефакторити
+
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
     case 'list':
       const allContacts = await contacts.listContacts();
-      return console.log(allContacts);
+      return console.table(allContacts);
     case 'get':
       const oneContact = await contacts.getContactById(id);
       return console.log(oneContact);
@@ -23,8 +23,16 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 }
 
-// invokeAction(argv);
-// invokeAction({ action: 'list' });
-// invokeAction({ action: 'get', id: 'qdggE76Jtbfd9eWJHrssH' });
-// invokeAction({ action: 'add', name: 'Rosie Simpson', email: 'rsimpson@mail.com', phone: '459-12-56' });
-// invokeAction({ action: 'remove', id: '87VfC_0k_BYClgTWx6bo6' });
+const program = new Command();
+program
+  .option('-a, --action <type>', 'choose action')
+  .option('-i, --id <type>', 'user id')
+  .option('-n, --name <type>', 'user name')
+  .option('-e, --email <type>', 'user email')
+  .option('-p, --phone <type>', 'user phone');
+
+program.parse(process.argv);
+
+const argv = program.opts();
+
+invokeAction(argv);
