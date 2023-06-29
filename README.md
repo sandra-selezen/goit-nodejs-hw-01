@@ -16,7 +16,7 @@ node index.js --action="add" --name Mango --email mango@gmail.com --phone 322-22
 
 [Add new contact](https://imgur.com/78mD3eE)
 
-# Remove contact by ID
+# Remove contact by ID or return null if no contact with this id is found
 node index.js --action="remove" --id qdggE76Jtbfd9eWJHrssH
 
-[Remove contact by ID or return null if no contact with this id is found](https://imgur.com/lzJyJcn)
+[Remove contact by ID](https://imgur.com/lzJyJcn)
